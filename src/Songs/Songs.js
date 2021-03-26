@@ -7,7 +7,7 @@ class Songs extends Component {
     let aSong = [];
     for (let i=0; i<this.props.songs.length; i++) {
       let newSongObject = this.props.songs[i];
-      aSong.push(<Song key={newSongObject._id} name={newSongObject.name} playcount={newSongObject.playcount} url={newSongObject.url}/>)
+      aSong.push(<Song key={newSongObject._id} deleteSong={this.props.deleteSong} _id={newSongObject._id} name={newSongObject.name} playcount={newSongObject.playcount} url={newSongObject.url}/>)
     }
     return (
       <div>

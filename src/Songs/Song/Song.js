@@ -5,6 +5,7 @@ function Song(props) {
         <div>
             <h1>{props.name}</h1>
             <p>{"playcount " + props.playcount}</p>
+            <button onClick={()=> props.deleteSong(props._id)}></button>
         </div>
     )
 }

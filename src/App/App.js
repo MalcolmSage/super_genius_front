@@ -32,8 +32,16 @@ class App extends Component {
     })
 
   }
+  deleteSong = (id) => {
+    console.log("deleted me:",id)
+    fetch('https://super-genius-back.herokuapp.com/songs/'+id,{method: "DELETE"})
+    .then(resp=>resp.json())
+    .then(deleteResp=>{
+      const updatedSongs = this.state.songs.filter(song=>song._id!==id)
+      this.setState({songs: updatedSongs})
+    })
+  }
 
-  
   
   render() {
     return (
@@ -47,7 +55,7 @@ class App extends Component {
         <main>
           <Route exact path='/' component={Home}/>
           <Route path='/artists' render={(renderProps)=><Artists {...renderProps} artists={this.state.artists}/>}/>
-          <Route path='/songs' render={(renderProps)=><Songs {...renderProps} songs={this.state.songs}/>}/>
+          <Route path='/songs' render={(renderProps)=><Songs deleteSong={this.deleteSong} {...renderProps} songs={this.state.songs}/>}/>
         </main>
       </div>
     );
